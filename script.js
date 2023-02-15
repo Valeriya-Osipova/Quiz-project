@@ -22,7 +22,7 @@ let result = 0;
 dom.button.onclick =() =>{
     step = step < questionCount ? step +1 : step;
     renderProgress(questionCount, step);
-    renderQuestion(step);
+    renderQuestion(questionCount, step);
 }
 
 function renderProgress (total, step){
@@ -32,12 +32,17 @@ function renderProgress (total, step){
     dom.progress.progressFill.style.width = `${progressPercent}%`;
 }
 
-function renderQuestion (step){
-    //data.questions.answers.forEach (element)
-    dom.question.innerHTML = data.questions[step].question
+function renderQuestion (total, step){
     dom.title.innerHTML = data.title
+    let index = step
+    if (step >= total){
+        index = step-1
+    }
+    dom.question.innerHTML = data.questions[index].question
+    console.log(index)
+    console.log(step)
 }
-renderQuestion(step);
+renderQuestion(questionCount, step);
 
 console.log(data)
 renderProgress(questionCount, step)
