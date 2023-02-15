@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
+
+:root{
+    --bgopacity: rgba(0, 0, 0, 0.088)
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: black;
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    background: #BDECB6;
+}
+
+.quiz{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 600px;
+    padding: 24px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.quiz__title{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.quiz__progress-wrap{
+    display: grid;
+    grid-column-gap: 16px;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.quiz__progress{
+    height: 15px;
+    border-radius: 15px;
+    background: var(--bgopacity);
+    position: relative;
+}
+
+.quiz__progress-fill{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10%;
+    max-width: inherit;
+    border-radius: 15px;
+    background-color: #7C87EF;
+    transition: width 0.5s ease-in-out;
+}
+
+.quiz__question{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.quiz__answers{
+    margin-bottom: 32px;
+}
+
+.quiz__answer:not(:last-child){
+    margin-bottom: 12px;
+}
+
+.quiz__answer{
+    cursor: pointer;
+    background-color:var(--bgopacity);
+    border-radius: 15px;
+    padding: 12px;
+    padding-right: 56px;
+}
+
+.quiz__answer:hover{
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.quiz__arswer-button{
+    cursor: pointer;
+    border: none;
+    background-color: #7C87EF;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    margin: 0 auto;
+    color: white;
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+
+.quiz__arswer-button:hover{
+    background-color: #7c88efd8;
+}
+
+.quiz__answer_active{
+    position: relative;
+    border: solid 2px green;
+}
+
+.quiz__answer_active::after{
+    content: '\2713';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    font-size: 24px;
+    height: 24px;
+    width: 24px;
+    margin-top: calc(-12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: green;
+}
