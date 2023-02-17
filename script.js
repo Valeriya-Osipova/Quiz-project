@@ -19,9 +19,26 @@ let result = 0;
 
 dom.button.onclick =() =>{
     step = step < questionCount ? step + 1 : step;
-    renderProgress(questionCount, step);
-    renderQuestion(questionCount, step);
+    renderQuiz(questionCount, step)
 }
+
+// Генерация всего квиза
+
+function renderQuiz(total, step){
+    renderProgress(total, step);
+    renderQuestion(total, step);
+    if (step + 1 == total){
+        changeButtonText();
+    }
+    if (step < total){
+        renderAnswers(data.questions[step].answers)
+    } else if (step == total){
+        renderResults()
+    }
+    isDesableButton(true);
+}
+renderQuiz(questionCount, step)
+
 
 //Заполнение прогресс бара
 
@@ -41,14 +58,6 @@ function renderQuestion (total, step){
         index = step - 1
     }
     dom.question.innerHTML = data.questions[index].question
-
-    // let answersLabels = document.getElementsByClassName('quiz__answer')
-
-    // for (let i = 0; i < data.questions[index].answers.length; i ++){
-    //     answersLabels[i].innerHTML = data.questions[index].answers[i]
-
-    //     console.log(data.questions[index].answers.length)
-    // }
 }
 
 //Генерация ответов
@@ -58,15 +67,58 @@ function renderAnswers (answers){
 
     answers.forEach((answer, id) => {
         const element = 
-        `<div class="quiz__answer" data-id="${id}">${answer}</div>`
+        `<div class="quiz__answer" data-id="${id + 1}">${answer}</div>`
         answerHTML.push(element)
     });
+    dom.answers.innerHTML = ''
+    for (let i = 0; i< answerHTML.length; i++){
+        dom.answers.innerHTML += answerHTML[i]
+    }
+}
+
+//Отслеживание клика
+
+dom.answers.onclick =(event) =>{
+    const target = event.target;
+    if (target.classList.contains('quiz__answer')){
+        const answerNumber = target.dataset.id 
+        console.log(answerNumber)
+        const isValid = checkAnswer(step, answerNumber)
+        console.log(isValid)
+        if (isValid){
+            target.classList.add('quiz__answer_right')
+        } else target.classList.add('quiz__answer_false')
+        isDesableButton(false)
+    }
 
 }
 
+//Проверка ответа
 
+function checkAnswer (step, answerNumber){
+    const validId = data.questions[step].validAnswer;
+    return validId == answerNumber
+}
 
+//Неактивность кнопки
 
-renderAnswers()
-renderQuestion(questionCount, step);
-renderProgress(questionCount, step)
+function isDesableButton (isDesable){
+    if (isDesable) {
+        dom.button.classList.add('button-desable');
+    } else{
+        dom.button.classList.remove('button-desable');
+    }
+}
+
+//Кнопка результат
+
+function changeButtonText(){
+    dom.button.innerText = 'Посмотреть результат';
+    dom.button.dataset.result = 'result';
+}
+
+//Генерация результатов
+
+function renderResults(){
+
+}
