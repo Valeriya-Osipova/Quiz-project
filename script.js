@@ -9,12 +9,18 @@ const dom = {
 
     question: document.getElementById('question'), 
     answers: document.getElementById('answers'),
-    button: document.getElementById('next')
+    button: document.getElementById('next'),
+
+    result:{
+        resultBlock: document.getElementById('result'),
+        validAnswers: document.getElementById('valid-answers'),
+        totalResultQuestions: document.getElementById('result-questions')
+    }
 }
 
 let questionCount = data.questions.length;
 let step = 0;
-let result = 0;
+let correctAnswers = 0;
 
 
 dom.button.onclick =() =>{
@@ -87,6 +93,7 @@ dom.answers.onclick =(event) =>{
         console.log(isValid)
         if (isValid){
             target.classList.add('quiz__answer_right')
+            correctAnswers+=1
         } else target.classList.add('quiz__answer_false')
         isDesableButton(false)
     }
@@ -120,5 +127,12 @@ function changeButtonText(){
 //Генерация результатов
 
 function renderResults(){
+    dom.answers.style.display = 'none';
+    dom.question.style.display = 'none';
+    dom.button.style.display = 'none';
+
+    dom.result.resultBlock.style.display = 'block';
+    dom.result.validAnswers.innerHTML = correctAnswers;
+    dom.result.totalResultQuestions.innerHTML = questionCount;
 
 }
