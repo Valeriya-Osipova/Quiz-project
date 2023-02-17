@@ -108,12 +108,14 @@ body{
     background-color: #7c88efd8;
 }
 
-.quiz__answer_active{
+.quiz__answer_false,
+.quiz__answer_right{
     position: relative;
     border: solid 2px green;
 }
 
-.quiz__answer_active::after{
+.quiz__answer_false::after,
+.quiz__answer_right::after{
     content: '\2713';
     position: absolute;
     right: 16px;
@@ -126,4 +128,23 @@ body{
     justify-content: center;
     align-items: center;
     color: green;
+}
+
+.quiz__answer_false{
+    border: solid 2px rgb(190, 12, 12);
+}
+
+.quiz__answer_false::after{
+    content: '\00D7';
+    color: rgb(190, 12, 12);
+    font-size: 28px;
+}
+
+.button-desable{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.button-desable:hover{
+    background-color: #7C87EF;
 }
