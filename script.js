@@ -4,7 +4,7 @@ const dom = {
     progress: {
         progressFill: document.getElementById('progress-fill'),
         questionNumber: document.getElementById('question-number'),
-        totaQuestions: document.getElementById('total-questions'),
+        totalQuestions: document.getElementById('total-questions'),
     },
 
     question: document.getElementById('question'), 
@@ -20,7 +20,7 @@ const dom = {
 
 let questionCount = data.questions.length;
 let step = 0;
-let correctAnswers = 0;
+let points = 0;
 
 
 dom.button.onclick =() =>{
@@ -51,7 +51,7 @@ renderQuiz(questionCount, step)
 function renderProgress (total, step){
     const progressPercent = 100/total * step;
     dom.progress.questionNumber.innerHTML = step;
-    dom.progress.totaQuestions.innerHTML = total;
+    dom.progress.totalQuestions.innerHTML = total;
     dom.progress.progressFill.style.width = `${progressPercent}%`;
 }
 
@@ -70,7 +70,6 @@ function renderQuestion (total, step){
 
 function renderAnswers (answers){
     let answerHTML = []
-
     answers.forEach((answer, id) => {
         const element = 
         `<div class="quiz__answer" data-id="${id + 1}">${answer}</div>`
@@ -93,11 +92,10 @@ dom.answers.onclick =(event) =>{
         console.log(isValid)
         if (isValid){
             target.classList.add('quiz__answer_right')
-            correctAnswers+=1
+            points+=1
         } else target.classList.add('quiz__answer_false')
         isDesableButton(false)
     }
-
 }
 
 //Проверка ответа
@@ -132,7 +130,7 @@ function renderResults(){
     dom.button.style.display = 'none';
 
     dom.result.resultBlock.style.display = 'block';
-    dom.result.validAnswers.innerHTML = correctAnswers;
+    dom.result.validAnswers.innerHTML = points;
     dom.result.totalResultQuestions.innerHTML = questionCount;
 
 }
