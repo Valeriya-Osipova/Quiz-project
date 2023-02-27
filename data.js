@@ -31,5 +31,42 @@ const data = {
             ],
             validAnswer: 5
         },
+        {
+            question: 'К какому типу относится значение NaN?',
+            answers: [
+                'К числовому',
+                'К строковому',
+                'К логическому ',
+            ],
+            validAnswer: 1
+        },
+        {
+            question: 'Что означает значение undefined?',
+            answers: [
+                'Ошибочный результат вычислений',
+                'Что значение не было присвоено',
+                'Ссылкой на несуществующий объект ',
+            ],
+            validAnswer: 2
+        },
+        {
+            question: 'Можно ли в JavaScript в переменную, в которой ранее хранилось целое число, записать объект?',
+            answers: [
+                'Можно',
+                'Нельзя ',
+            ],
+            validAnswer: 1
+        },
+        {
+            question: 'Каким будет консольный вывод кода: </br> <span class="code">console.log (NaN === NaN, NaN == NaN);</span>',
+            answers: [
+                'false, false',
+                'Error ',
+                'false, true',
+                'There isn`t such thing like NaN',
+                'true',
+            ],
+            validAnswer: 1
+        },
     ]
 }
