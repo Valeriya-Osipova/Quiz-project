@@ -121,10 +121,9 @@ function isDesableButton (isDesable){
 
 function desableAnswer (isDesable){
     if (isDesable) {
-        dom.answers.classList.add('button-desable');
-        dom.answers.style.opacity = 1;
+        dom.answers.classList.add('button-desable-answer');
     } else{
-        dom.answers.classList.remove('button-desable');
+        dom.answers.classList.remove('button-desable-answer');
     }
 }
 
