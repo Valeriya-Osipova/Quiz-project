@@ -169,4 +169,10 @@ body{
 .quiz__result-info{
     font-size: 24px;
     font-weight: 400;
+    margin-bottom: 50px;
+}
+
+.code{
+    font-weight: 300;
+    font-size: 20px ;
 }
