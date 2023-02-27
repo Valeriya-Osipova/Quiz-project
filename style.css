@@ -91,6 +91,7 @@ body{
     border-radius: 15px;
     padding: 12px;
     padding-right: 56px;
+    user-select: none;
 }
 
 .quiz__answer:hover{
@@ -107,6 +108,7 @@ body{
     color: white;
     padding: 10px 40px;
     border-radius: 10px;
+    user-select: none;
 }
 
 .quiz__arswer-button:hover{
