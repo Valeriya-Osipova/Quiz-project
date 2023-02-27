@@ -14,14 +14,14 @@ const dom = {
     result:{
         resultBlock: document.getElementById('result'),
         validAnswers: document.getElementById('valid-answers'),
-        totalResultQuestions: document.getElementById('result-questions')
+        totalResultQuestions: document.getElementById('result-questions'),
+        repeatButton: document.getElementById('repeat')
     }
 }
 
 let questionCount = data.questions.length;
 let step = 0;
 let points = 0;
-
 
 dom.button.onclick =() =>{
     step = step < questionCount ? step + 1 : step;
@@ -42,6 +42,7 @@ function renderQuiz(total, step){
         renderResults()
     }
     isDesableButton(true);
+    desableAnswer(false);
 }
 renderQuiz(questionCount, step)
 
@@ -95,6 +96,7 @@ dom.answers.onclick =(event) =>{
             points+=1
         } else target.classList.add('quiz__answer_false')
         isDesableButton(false)
+        desableAnswer(true)
     }
 }
 
@@ -112,6 +114,17 @@ function isDesableButton (isDesable){
         dom.button.classList.add('button-desable');
     } else{
         dom.button.classList.remove('button-desable');
+    }
+}
+
+//Неактивности вариантов ответа
+
+function desableAnswer (isDesable){
+    if (isDesable) {
+        dom.answers.classList.add('button-desable');
+        dom.answers.style.opacity = 1;
+    } else{
+        dom.answers.classList.remove('button-desable');
     }
 }
 
@@ -133,4 +146,14 @@ function renderResults(){
     dom.result.validAnswers.innerHTML = points;
     dom.result.totalResultQuestions.innerHTML = questionCount;
 
+}
+
+dom.result.repeatButton.onclick =() =>{
+    step = 0;
+    points = 0;
+    renderQuiz(questionCount, step);
+    dom.answers.style.display = 'block';
+    dom.question.style.display = 'block';
+    dom.button.style.display = 'block';
+    dom.result.resultBlock.style.display = 'none';
 }
