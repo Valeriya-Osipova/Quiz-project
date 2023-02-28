@@ -155,4 +155,5 @@ dom.result.repeatButton.onclick =() =>{
     dom.question.style.display = 'block';
     dom.button.style.display = 'block';
     dom.result.resultBlock.style.display = 'none';
+    dom.button.innerText = 'Следующий вопрос';
 }
